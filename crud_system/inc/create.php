@@ -1,3 +1,15 @@
+<?php 
+
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
+
+
+
+?>
+
+
+
 <div class="container-fluid">
     <div class="row">
         <div class="body col-md-12">
@@ -60,32 +72,32 @@
                         <label for="Roll">Semester</label>
                         <div class="input-group">
                             <label class="custom-control custom-radio">
-                              <input id="radio1" name="1" type="radio" class="custom-control-input">
+                              <input id="radio1" name="semester" value="1" type="radio" class="custom-control-input">
                               <span class="custom-control-indicator"></span>
                               <span class="custom-control-description">1st</span>
                             </label>
 
                             <label class="custom-control custom-radio">
-                              <input id="radio1" name="2" type="radio" class="custom-control-input">
+                              <input id="radio1" name="semester" value="2" type="radio" class="custom-control-input">
                               <span class="custom-control-indicator"></span>
                               <span class="custom-control-description">2nd</span>
                             </label>
 
                             <label class="custom-control custom-radio">
-                              <input id="radio1" name="3" type="radio" class="custom-control-input">
+                              <input id="radio1" name="semester" value="3" type="radio" class="custom-control-input">
                               <span class="custom-control-indicator"></span>
                               <span class="custom-control-description">3rd</span>
                             </label>
 
                             <label class="custom-control custom-radio">
-                              <input id="radio1" name="4" type="radio" class="custom-control-input">
+                              <input id="radio1" name="semester" value="4" type="radio" class="custom-control-input">
                               <span class="custom-control-indicator"></span>
                               <span class="custom-control-description">4th</span>
                             </label>
                         </div>
                     </div>
 
-                    <button type="submit" name="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+                    <button type="submit" name="createStudent" class="btn btn-primary btn-lg btn-block">Submit</button>
                 </form>
             </div>
         </div>

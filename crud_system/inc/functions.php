@@ -1,15 +1,15 @@
 <?php 
 
-// $con = mysqli_connect("localhost","root","","note");
-// // Check connection
-// if (mysqli_connect_errno())
-//   {
-//   echo "Failed to connect to MySQL: " . mysqli_connect_error();
-//   }
+$con = mysqli_connect("localhost","root","","phpuniversity");
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
 
 
-// date_default_timezone_set("Asia/Dhaka");
-// //$curent_time = NOW();
+date_default_timezone_set("Asia/Dhaka");
+//$curent_time = NOW();
 
 
 
@@ -53,69 +53,123 @@ if(isset($_GET['v']))
 
 
 
-// //show all notes
-// $query = "SELECT * FROM mynote";
-// $catchNote = mysqli_query($con, $query);
+//show all data
+$query = "SELECT * FROM students";
+$catchNote = mysqli_query($con, $query);
 
 
 
-// $info_message = false;
-// //createNote
-// if(isset($_POST['createNote']))
-// {
-// 	$title = trim($_POST['title']);
-// 	$title = strip_tags($title);
-// 	$title = htmlspecialchars($title);
+//createStudent
+if(isset($_POST['createStudent']))
+{
+  if(!empty($_POST['name']))
+  {
+    $name = trim($_POST['name']);
+    $name = strip_tags($name);
+    $name = htmlspecialchars($name);
+  }
+	else
+  {
+    $info_message[0] = false;
+    $error = "Please Fill Name First";
+  }
 
-// 	$note = trim($_POST['note']);
-// 	$note = strip_tags($note);
-// 	$note = htmlspecialchars($note);
+  if(!empty($_POST['roll']))
+  {
+    $roll = trim($_POST['roll']);
+    $roll = strip_tags($roll);
+    $roll = htmlspecialchars($roll);
+  }
+  else
+  {
+    $info_message[0] = false;
+    $error = "Please Fill Roll";
+  }
 
-// 	$query = "INSERT INTO mynote (title, note, created_on) VALUES ('$title', '$note', NOW())";
+  if(!empty($_POST['faculty']))
+  {
+    $faculty = trim($_POST['faculty']);
+    $faculty = strip_tags($faculty);
+    $faculty = htmlspecialchars($faculty);
+  }
+  else
+  {
+    $info_message[0] = false;
+    $error = "Please Select a Faculty";
+  }
 
-// 	$createNote = mysqli_query($con, $query);
+  if(!empty($_POST['subject']))
+  {
+    $subject = trim($_POST['subject']);
+    $subject = strip_tags($subject);
+    $subject = htmlspecialchars($subject);
+  }
+  else
+  {
+    $info_message[0] = false;
+    $error = "Please Select a Subject";
+  }
+
+  if(!empty($_POST['semester']))
+  {
+    $semester = trim($_POST['semester']);
+    $semester = strip_tags($semester);
+    $semester = htmlspecialchars($semester);
+  }
+  else
+  {
+    $info_message[0] = false;
+    $error = "Please Select a semester";
+  }
+
+  if(isset($info_message))
+  {
+    $info_message[0] = false;
+  }
+  else
+  {
+    $query = "INSERT INTO students (name, roll, faculty, subject, semester) VALUES ('$name', '$roll', '$faculty', '$subject', '$semester')";
+    $createStudent = mysqli_query($con, $query);
+  }
 
 
 
-// 	if($createNote)
-// 	{
-// 		$info_message = true;
-// 		$message = "Note Successfully Created";
-// 	}
-// 	else
-// 	{
-// 		$info_message = true;
-// 		$message = "Something wrong";
-// 	}
-// }
+	if(isset($createStudent) && !empty($createStudent))
+	{
+		$info_message[0] = true;
+		$success = "Student Entry Successfully Added To Database";
+	}
+	else
+	{
+		$info_message[0] = false;
+		$error = "Something wrong";
+	}
+}
 
 
 
+//delete Student
+if(isset($_GET['delete_id']))
+{
+	$delete_id = $_GET['delete_id'];
+
+	$query = "DELETE FROM students WHERE id='$delete_id'";
+	$delete =  mysqli_query($con, $query);
 
 
-// //delete Note
-// if(isset($_GET['delete_id']))
-// {
-// 	$delete_id = $_GET['delete_id'];
+	if($delete)
+	{
+		$info_message[0] = true;
+		$success = "Note Successfully Deleted";
+	}
+	else
+	{
+		$info_message[0] = false;
+		$error = "Something wrong";
+	}
 
-// 	$query = "DELETE FROM mynote WHERE id='$delete_id'";
-// 	$delete =  mysqli_query($con, $query);
+} 
 
-
-// 	if($delete)
-// 	{
-// 		$info_message = true;
-// 		$message = "Note Successfully Deleted";
-// 	}
-// 	else
-// 	{
-// 		$info_message = true;
-// 		$message = "Something wrong";
-// 	}
-
-// } 
-
-// //eader('Location: http://localhost/mynote/note.php');
 
 
 ?>

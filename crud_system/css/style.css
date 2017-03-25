@@ -31,7 +31,10 @@ body {
 .title {
 	margin: 15px 0;
 }
-
+/*success / error section */
+.message p {
+	padding: 15px;
+}
 
 
 

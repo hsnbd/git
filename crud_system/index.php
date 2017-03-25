@@ -40,7 +40,17 @@
             </div>
         </div>
 
-  
+<?php 
+if(isset($info_message)){ ?>
+        <div class="row">
+            <div class="message col-md-12">
+                <p class=<?php if($info_message[0]==false){echo "alert-danger";}else { echo "alert-success";} ?>><?php if($info_message[0]==false){echo $error;}else { echo $success;} ?></p>
+            </div>
+        </div>
+
+<?php } ?>
+
+
 <?php 
 if (isset($_GET['v'])){
 
