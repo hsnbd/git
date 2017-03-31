@@ -1,0 +1,50 @@
+body {
+    font-family: Helvetica, Arial, sans-serif; /* Nicer font */
+}
+.logo {
+	padding: 15px 0;
+	background: darkblue;
+	color: #fff;
+}
+
+/*.menu section */
+.menu a {
+	background: #eee;
+}
+.menu .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+
+
+
+
+/*body section */
+.body {
+	margin-bottom: 100px;
+	border: 1px solid #ddd;
+	border-top: 1px solid #fff;
+	padding: 10px;
+}
+.title {
+	margin: 15px 0;
+	color: darkblue;
+}
+/*success / error section */
+.message p {
+	padding: 15px;
+}
+
+
+
+
+/*footer section */
+.footer {
+	background: #111;
+	color: #fff;
+}
+.footer p{
+	padding: 0;
+	margin: 0;
+}
