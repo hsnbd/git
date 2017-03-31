@@ -29,6 +29,19 @@ class Database
     }
 
 /**------------------------------------------------------
+*                        Function For Validation SQL DATA
+*------------------------------------------------------*/
+    protected function Validation($data){
+        /*
+        $data = mysqli_real_escape_string($this->DB, $data);
+        $data = trim($data);
+        $data = strip_tags($data, "<p><b><a>");
+        return $data;
+        */
+        return strip_tags(trim(mysqli_real_escape_string($this->DB, $data)));
+    }
+
+/**------------------------------------------------------
 *                        Function For INSERT DATA
 *------------------------------------------------------*/
     public function Insert($table, $data)
@@ -40,7 +53,7 @@ class Database
         {
           $sql = $sql . ", ";
         }
-        $sql = $sql . "{$key} = '$value'";
+        $sql = $sql . "{$key} = '".$this->Validation($value)."'";
       }
 
       $sql = "INSERT INTO $table SET " . $sql;
@@ -65,7 +78,7 @@ class Database
 *------------------------------------------------------*/
     public function View($table, $where)
     {
-      $sql = "SELECT * FROM {$table} WHERE  {$where[0]}={$where[1]}";
+      $sql = "SELECT * FROM {$table} WHERE  {$where[0]}='".$this->Validation($where[1])."'";
       return $this->DB->query($sql);
     }
 
@@ -74,7 +87,7 @@ class Database
 *------------------------------------------------------*/
     public function Edit($table, $where)
     {
-      $sql = "SELECT * FROM {$table} WHERE  {$where[0]} = {$where[1]}";
+      $sql = "SELECT * FROM {$table} WHERE  {$where[0]} ='".$this->Validation($where[1])."'";
       return $this->DB->query($sql);
     }
 
@@ -90,7 +103,7 @@ class Database
         {
           $sql = $sql . ", ";
         }
-        $sql = $sql . "{$key} = '$value'";
+        $sql = $sql . "{$key} = '".$this->Validation($value)."'";
       }
 
       $sql = "UPDATE $table SET " . $sql;
@@ -106,7 +119,7 @@ class Database
 *                        FUNCTION FOR DELETE DATA
 *------------------------------------------------------*/
   public function Delete($table, $where){
-    $sql = "delete from $table where {$where[0]} = {$where[1]}"; 
+    $sql = "delete from $table where {$where[0]} = '".$this->Validation($where[1])."'";
     $this->DB->query($sql);
     if(mysqli_affected_rows($this->DB)){
       return true;
