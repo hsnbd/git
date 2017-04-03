@@ -1,4 +1,4 @@
-<?php require('inc/functions.php'); ?>
+<?php require('controller/functions.php'); ?>
 
 <!DOCTYPE html>
 <html>
@@ -53,18 +53,18 @@
 //for dynamic menu navigation 
 if (isset($_GET['v'])){
 
-  if(file_exists("inc/".$_GET['v'].".php"))
+  if(file_exists("view/".$_GET['v'].".php"))
   {
-    require('inc/'.$_GET['v'].'.php');
+    require('view/'.$_GET['v'].'.php');
   }
   else
   {
-    require('inc/404.php');
+    require('view/404.php');
   }
 }
 else
 {
-  require('inc/home.php');
+  require('view/home.php');
 }
  ?>
 

@@ -1,0 +1,106 @@
+/*#header */
+#header {
+	background: #102a4d;
+	color: #fff;
+	padding: 10px;
+}
+/*.logId a {
+	color: gray;
+
+}*/
+.logId .btn-secondary, .logId .btn-secondary:hover, .logId .btn-secondary:active{
+	background: #011125;
+	border: transparent;
+	color: #888;
+}
+.header-plate {
+	color: #fff;
+}
+.header-plate p {
+	padding: 0;
+	margin: 0;
+}
+
+
+
+
+
+/*left-side */
+#left-side {
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 5px;
+	height: 552px;
+	background: #102a4d;
+	color: #fff;
+}
+.left-menu .left-link:hover, .active.left-link {
+	background: #011125;
+	color: #fff;
+	border-radius: 30px;
+}
+
+
+
+
+/*right-side */
+#right-side {
+
+}
+
+
+
+
+
+
+/*main body */
+#middle-body {
+
+}
+.allBook , .addBook, .allStudent, .addStudent, .dashboard, .issueBook, .returnBook {
+	padding: 15px;
+}
+.allBook h4, .addBook h4, .allStudent h4, .addStudent h4, .dashboard h4, .issueBook h4, .returnBook h4 {
+	background: #102a4d;
+	color: #fff;
+	padding: 2px 35px;
+	display: inline-block;
+}
+
+/*dashboard.php */
+.dashboard .font-50 {
+	font-size: 50px;
+}
+.dashboard .dash-card {
+	padding: 20px;
+	margin: 10px;
+}
+
+
+
+
+.log-form {
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 80px;
+	padding: 30px;
+	border: 1px solid #ccc;
+	max-width: 500px;
+}
+.log-form .btn-primary {
+	padding: 6px 40px;
+	border-radius: 10px;
+	border-color: transparent;
+}
+
+
+
+/*main footer */
+.footer {
+	background: #102a4d;
+	color: #fff;
+}
+.footer p{
+	margin: 0;
+	padding: 0;
+}
