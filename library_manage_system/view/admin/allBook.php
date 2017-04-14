@@ -38,7 +38,7 @@ while($dt = mysqli_fetch_object($data))
 					<td><?php echo $dt->publication; ?></td>
 					<td><?php echo $dt->isbn; ?></td>
 					<td>$<?php echo $dt->price; ?></td>
-					<td><?php echo $dt->available_copy; ?></td>
+					<td><?php echo $dt->stock; ?></td>
 					<td><i class="fa fa-eye btn-success btn-sm"></i><i class="fa fa-edit  btn-warning btn-sm"></i><i class="fa fa-trash  btn-danger btn-sm"></i></td>
 				</tr>
 			

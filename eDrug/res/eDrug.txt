@@ -1,0 +1,246 @@
+
+CREATE TABLE generic (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(40) NOT NULL,
+description VARCHAR(100) NOT NULL,
+created_at timestamp null,
+updated_at timestamp null
+),
+
+CREATE TABLE unit (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(40) NOT NULL,
+created_at timestamp null,
+updated_at timestamp null
+),
+
+CREATE TABLE power (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(40) NOT NULL,
+created_at timestamp null,
+updated_at timestamp null
+),
+
+CREATE TABLE buyers (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(40) NOT NULL,
+email VARCHAR(40) NOT NULL,
+password VARCHAR(40) NOT NULL,
+type CHAR(10) NOT NULL,
+created_at timestamp null,
+updated_at timestamp null
+ ),
+
+CREATE TABLE country (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(40) NOT NULL,
+created_at timestamp null,
+updated_at timestamp null
+ ),
+
+CREATE TABLE city (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(40) NOT NULL,
+countryid INT NOT NULL,
+created_at timestamp null,
+updated_at timestamp null,
+FOREIGN KEY (countryid) REFERENCES country(id)
+ ),
+
+CREATE TABLE company (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(40) NOT NULL,
+address VARCHAR(40) NOT NULL,
+contact VARCHAR(40) NOT NULL,
+status VARCHAR(10) NOT NULL,
+commission INT (10) NOT NULL,
+created_at timestamp null,
+updated_at timestamp null
+ ),
+
+CREATE TABLE retail_marketer(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(40) NOT NULL,
+address VARCHAR(40) NOT NULL,
+contact VARCHAR(40) NOT NULL,
+status VARCHAR(10) NOT NULL,
+cityid INT NOT NULL,
+created_at timestamp null,
+updated_at timestamp null,
+FOREIGN KEY (cityid) REFERENCES city(id)
+ ),
+
+CREATE TABLE retail_accounts (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(40) NOT NULL,
+email VARCHAR(40) NOT NULL,
+password VARCHAR(40) NOT NULL,
+type CHAR(10) NOT NULL,
+gender CHAR(6) NOT NULL,
+contact VARCHAR(40) NOT NULL,
+address VARCHAR(40) NOT NULL,
+picture CHAR(10) NOT NULL,
+nid VARCHAR(40) NOT NULL,
+cityid INT NOT NULL,
+retail_markerer_id INT NOT NULL,
+created_at timestamp NULL,
+updated_at timestamp NULL,
+FOREIGN KEY (cityid) REFERENCES city(id),
+FOREIGN KEY (retail_markerer_id) REFERENCES retail_marketer (id)
+ ),
+
+CREATE TABLE customer (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(40) NOT NULL,
+email VARCHAR(40) NOT NULL,
+password VARCHAR(40) NOT NULL,
+gender CHAR(6) NOT NULL,
+contact VARCHAR(40) NOT NULL,
+address VARCHAR(40) NOT NULL,
+picture CHAR(10) NOT NULL,
+cityid INT NOT NULL,
+status INT NOT NULL,
+created_at timestamp NULL,
+updated_at timestamp NULL,
+FOREIGN KEY (cityid) REFERENCES city(id)
+),
+
+CREATE TABLE company_account (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(40) NOT NULL,
+email VARCHAR(40) NOT NULL,
+password VARCHAR(40) NOT NULL,
+type CHAR(10) NOT NULL,
+gender CHAR(6) NOT NULL,
+contact VARCHAR(40) NOT NULL,
+address VARCHAR(40) NOT NULL,
+picture CHAR(10) NOT NULL,
+nid VARCHAR(40) NOT NULL,
+deposit INT NOT NULL,
+cityid INT NOT NULL,
+companyid INT NOT NULL,
+created_at timestamp NULL,
+updated_at timestamp NULL,
+FOREIGN KEY (cityid) REFERENCES city(id),
+FOREIGN KEY (companyid) REFERENCES company(id)
+ ),
+
+CREATE TABLE medicine (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(40) NOT NULL,
+description VARCHAR(40) NOT NULL,
+price INT(10) NOT NULL,
+unitid INT NOT NULL, 
+genericid INT NOT NULL,
+powerid INT NOT NULL,
+discount INT(10) NOT NULL,
+least_order INT(10) NOT NULL,
+companyid INT NOT NULL,
+picture1 CHAR(10) NOT NULL,
+picture2 CHAR(10) NOT NULL,
+picture3 CHAR(10) NOT NULL,
+created_at timestamp NULL,
+updated_at timestamp NULL,
+FOREIGN KEY (unitid) REFERENCES unit(id),
+FOREIGN KEY (companyid) REFERENCES company(id), 
+FOREIGN KEY (genericid) REFERENCES generic(id),
+FOREIGN KEY (powerid) REFERENCES power(id)
+ ),
+
+CREATE TABLE company_commission (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+deposit INT NOT NULL,
+commission INT NOT NULL,
+companyid INT NOT NULL,
+date timestamp NULL,
+created_at timestamp NULL,
+updated_at timestamp NULL,
+FOREIGN KEY (companyid) REFERENCES company(id)
+ ),
+
+CREATE TABLE stock_medicine (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(40) NOT NULL,
+description VARCHAR(40) NOT NULL,
+price INT(10) NOT NULL,
+retail_marketer_id INT NOT NULL, 
+medicineid INT NOT NULL,
+quantity INT(10) NOT NULL,
+discount INT(10) NOT NULL,
+date timestamp NULL,
+created_at timestamp NULL,
+updated_at timestamp NULL,
+FOREIGN KEY (retail_marketer_id) REFERENCES retail_marketer(id),
+FOREIGN KEY (medicineid) REFERENCES medicine(id), 
+ ),
+
+CREATE TABLE retail_commission (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+price INT(10) NOT NULL,
+retail_marketer_id INT NOT NULL, 
+commission INT(10) NOT NULL,
+date timestamp NULL,
+created_at timestamp NULL,
+updated_at timestamp NULL,
+FOREIGN KEY (retail_marketer_id) REFERENCES retail_marketer(id)
+ ),
+
+CREATE TABLE company_registration (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+companyid INT NOT NULL,
+reg_date timestamp NULL,
+reg_fees INT(10) NOT NULL,
+created_at timestamp NULL,
+updated_at timestamp NULL,
+FOREIGN KEY (companyid) REFERENCES company(id)
+ ),
+
+CREATE TABLE retail_registration (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+retail_marketer_id INT NOT NULL,
+reg_date timestamp NULL,
+reg_fees INT(10) NOT NULL,
+created_at timestamp NULL,
+updated_at timestamp NULL,
+FOREIGN KEY (retail_marketer_id) REFERENCES retail_marketer(id)
+ ),
+
+CREATE TABLE comment (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+customerid INT NOT NULL,
+retail_marketer_id INT NOT NULL,
+description VARCHAR(40) NOT NULL,
+date timestamp NULL,
+created_at timestamp NULL,
+updated_at timestamp NULL,
+FOREIGN KEY (customerid) REFERENCES customer(id),
+FOREIGN KEY (retail_marketer_id) REFERENCES retail_marketer(id)
+ ),
+
+CREATE TABLE sale (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+customerid INT NOT NULL,
+shipping VARCHAR(40) NOT NULL,
+date timestamp NULL,
+created_at timestamp NULL,
+updated_at timestamp NULL,
+FOREIGN KEY (customerid) REFERENCES customer(id)
+ ),
+
+CREATE TABLE saledetail (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+stock_medicineid INT NOT NULL,
+saleid INT NOT NULL,
+shipping VARCHAR(40) NOT NULL,
+quantity INT(10) NOT NULL,
+discount INT(10) NOT NULL,
+date timestamp NULL,
+created_at timestamp NULL,
+updated_at timestamp NULL,
+FOREIGN KEY (stock_medicineid) REFERENCES stock_medicine(id),
+FOREIGN KEY (saleid) REFERENCES sale(id)
+ )
+
+
+
+

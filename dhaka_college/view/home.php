@@ -1,15 +1,25 @@
 <?php
-//message for update data
-if(isset($_GET['message']))
-{
-    echo $_GET['message'];
-}
-
 //for delete data
 if(isset($_GET['did']))
 {
     $d = new Database();
-    if($d->Delete("student", array("id", $_GET['did'])))
+    $data = $d->View("student", array("id", $_GET['did']));
+    $dt = mysqli_fetch_object($data);
+
+    if($dt->picture)
+    {
+        unlink("images/profile/profile_{$_GET['did']}.{$dt->picture}");
+    }
+    if($dt->video)
+    {
+        unlink("videos/video_{$_GET['did']}.{$dt->video}");
+    }
+    if(file_exists("files/about_{$_GET['did']}.txt"))
+    {
+        unlink("files/about_{$_GET['did']}.txt");
+    }
+
+    if($data = $d->Delete("student", array("id", $_GET['did'])))
     {
         echo $message = "Delete Successful";
     }
@@ -32,6 +42,7 @@ if(isset($_GET['did']))
                     <thead class="thead-default">
                          <tr>
                             <th>sl.</th>
+                            <th>Profile</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Gender</th>
@@ -54,6 +65,7 @@ while($dt = mysqli_fetch_object($data))
 
                         <tr>
                             <td><?php echo $sl; ?></td>
+                            <td><img src="images/profile/profile_<?php echo $dt->id.'.'.$dt->picture; ?>" width="50"></td>
                             <td><?php echo $dt->name; ?></td>
                             <td><?php echo $dt->email; ?></td>
                             <td><?php echo $dt->gender; ?></td>

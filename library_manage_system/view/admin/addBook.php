@@ -1,41 +1,33 @@
 <?php 
-
-//----------------------------------------------------------------------------------
-//ekhane code dile $message variable ta error ase why ?
-//----------------------------------------------------------------------------------
-
-
-
-
-if(isset($_POST['addBook'])){
+if(filter_input(INPUT_POST, "addBook")){
 
 print "<pre>";
-print_r($_POST);
+print_r(filter_input_array(INPUT_POST));
 print "</pre>";
 
-    // if(!empty($_POST['book_id'] && $_POST['book_name'] && $_POST['author'] && $_POST['publication'] && $_POST['isbn'] && $_POST['price'] && $_POST['available_copy'] && $_POST['description'] && $_POST['current_date']))
+    // if(!empty($_POST['book_id'] && $_POST['book_name'] && $_POST['author'] && $_POST['publication'] && $_POST['isbn'] && $_POST['price'] && $_POST['stock'] && $_POST['description'] && $_POST['current_date']))
     // {
-        $data = array(
-            "book_id" => $_POST['book_id'],
-            "book_name" => $_POST['book_name'],
-            "author" => $_POST['author'],
-            "publication" => $_POST['publication'],
-            "isbn" => $_POST['isbn'],
-            "price" => $_POST['price'],
-            "available_copy" => $_POST['available_copy'],
-            "description" => $_POST['description'],
-            "date" => $_POST['current_date']
-        );
+
+        $data = [
+            "book_id" => filter_input(INPUT_POST, "book_id", FILTER_VALIDATE_INT, FILTER_SANITIZE_ENCODED),
+            "book_name" => filter_input(INPUT_POST, "book_name", FILTER_SANITIZE_STRING, FILTER_SANITIZE_SPECIAL_CHARS),
+            "author" => filter_input(INPUT_POST, "author", FILTER_SANITIZE_STRING, FILTER_SANITIZE_SPECIAL_CHARS),
+            "publication" => filter_input(INPUT_POST, "publication", FILTER_SANITIZE_STRING, FILTER_SANITIZE_SPECIAL_CHARS),
+            "isbn" => filter_input(INPUT_POST, "isbn", FILTER_VALIDATE_INT),
+            "price" => filter_input(INPUT_POST, "price", FILTER_VALIDATE_INT),
+            "stock" => filter_input(INPUT_POST, "stock", FILTER_VALIDATE_INT),
+            "date" => filter_input(INPUT_POST, "current_date", FILTER_SANITIZE_STRING, FILTER_SANITIZE_SPECIAL_CHARS)
+        ];
 print "<pre>";
 print_r($data);
 print "</pre>";
-        $d = new Database();
-        if($d->Insert("all_book", $data)){
-            echo $message = "Insert Successful";
-        }   
-        else{
-            echo $message = "Server too busy"; 
-        }    
+//        $d = new Database();
+//        if($d->Insert("all_book", $data)){
+//            echo $message = "Insert Successful";
+//        }   
+//        else{
+//            echo $message = "Server too busy"; 
+//        }    
     // }
     // else
     // {
@@ -84,8 +76,8 @@ print "</pre>";
 					    <input type="text" name="price" class="form-control" id="formGroupExampleInput" >
 					</div>
 					<div class="form-group">
-					    <label for="available_copy">Available Copy</label>
-					    <input type="text" name="available_copy" class="form-control">
+					    <label for="stock">stock</label>
+					    <input type="text" name="stock" class="form-control">
 					</div>
 					<div class="form-group">
 					    <label for="description">Description</label>

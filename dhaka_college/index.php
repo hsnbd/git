@@ -1,4 +1,4 @@
-<?php require('controller/functions.php'); ?>
+<?php require('controller/functions.php'); ?> 
 
 <!DOCTYPE html>
 <html>
@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+
+
 </head>
 
 <body>
@@ -51,16 +53,16 @@
 
 <?php
 //for dynamic menu navigation 
-if (isset($_GET['v'])){
-
-  if(file_exists("view/".$_GET['v'].".php"))
-  {
-    require('view/'.$_GET['v'].'.php');
-  }
-  else
-  {
-    require('view/404.php');
-  }
+if(isset($_GET['v']))
+{
+      if(file_exists("view/".$_GET['v'].".php"))
+      {
+        require('view/'.$_GET['v'].'.php');
+      }
+      else
+      {
+        require('view/404.php');
+      }
 }
 else
 {

@@ -12,7 +12,6 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
-
 <body>
     <div class="container-fluid">
 
@@ -72,16 +71,16 @@
     	<div class="row">
 	    		<div id="left-side" class="col-md-2">
                     <div class="left-menu">
-                        <nav class="nav flex-column">
-                            <a class="left-link nav-link <?php if($menu=="home") echo "active"; ?>" href="index.php"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a>
-                            <a class="left-link nav-link <?php if($menu=="dashboard") echo "active"; ?>" href="index.php?a=dashboard"><i class="fa fa-dashboard"></i>&nbsp;&nbsp;Dashboard</a>
-                            <a class="left-link nav-link <?php if($menu=="allBook") echo "active"; ?>" href="index.php?a=allBook"><i class="fa fa-book"></i>&nbsp;&nbsp;All Book</a>
-                            <a class="left-link nav-link <?php if($menu=="addBook") echo "active"; ?>" href="index.php?a=addBook"><i class="fa fa-plus-circle"></i>&nbsp;&nbsp;Add Book</a>
-                            <a class="left-link nav-link <?php if($menu=="issueBook") echo "active"; ?>" href="index.php?a=issueBook"><i class="fa fa-file-text"></i>&nbsp;&nbsp;Issue Book</a><!--Issue Book and Issue book history page-->
-                            <a class="left-link nav-link <?php if($menu=="returnBook") echo "active"; ?>" href="index.php?a=returnBook"><i class="fa fa-rotate-left"></i>&nbsp;&nbsp;Return Book</a><!--Return Book and Return book history page-->
-                            <a class="left-link nav-link <?php if($menu=="allStudent") echo "active"; ?>" href="index.php?a=allStudent"><i class="fa fa-users"></i>&nbsp;&nbsp;All Student</a>
-                            <a class="left-link nav-link <?php if($menu=="addStudent") echo "active"; ?>" href="index.php?a=addStudent"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;Add Student</a>
-                        </nav>
+                        
+                            <a class="left-link nav-link <?php if($menu=="home"){ echo "active"; }?>" href="index.php"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a>
+                            <a class="left-link nav-link <?php if($menu=="dashboard"){ echo "active"; }?>" href="index.php?a=dashboard"><i class="fa fa-dashboard"></i>&nbsp;&nbsp;Dashboard</a>
+                            <a class="left-link nav-link <?php if($menu=="allBook"){ echo "active"; }?>" href="index.php?a=allBook"><i class="fa fa-book"></i>&nbsp;&nbsp;All Book</a>
+                            <a class="left-link nav-link <?php if($menu=="addBook"){ echo "active"; }?>" href="index.php?a=addBook"><i class="fa fa-plus-circle"></i>&nbsp;&nbsp;Add Book</a>
+                            <a class="left-link nav-link <?php if($menu=="issueBook"){ echo "active"; }?>" href="index.php?a=issueBook"><i class="fa fa-file-text"></i>&nbsp;&nbsp;Issue Book</a><!--Issue Book and Issue book history page-->
+                            <a class="left-link nav-link <?php if($menu=="returnBook"){ echo "active"; }?>" href="index.php?a=returnBook"><i class="fa fa-rotate-left"></i>&nbsp;&nbsp;Return Book</a><!--Return Book and Return book history page-->
+                            <a class="left-link nav-link <?php if($menu=="allStudent"){ echo "active"; }?>" href="index.php?a=allStudent"><i class="fa fa-users"></i>&nbsp;&nbsp;All Student</a>
+                            <a class="left-link nav-link <?php if($menu=="addStudent"){ echo "active"; }?>" href="index.php?a=addStudent"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;Add Student</a>
+                        
                     </div>
 	    		</div>
 
