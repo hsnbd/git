@@ -1,0 +1,15 @@
+<?php
+class Controller
+{
+	public function model($model)
+	{
+		require '../app/models/'. $model . '.php';
+		return new $model(); //User class er object created
+	}
+
+	public function view($view, $data = [])
+	{
+		require '../app/views/'. $view . '.php';
+	}
+}
+?>

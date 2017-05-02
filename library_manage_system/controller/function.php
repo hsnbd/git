@@ -1,4 +1,4 @@
-<?php  require('model/database.php');
+<?php  require('../model/database.php');
 //basic config
 $title = "Library Management System";
 $menu = "home";
