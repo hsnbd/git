@@ -7,9 +7,14 @@
 // print_r($_FILES);
 // print("</pre>");
 
-if(isset($_POST['createStudent'])){
+if(isset($_POST['createStudent']))
+{
 
-    if(!empty($_POST['name'] && $_POST['email'] && $_POST['password'] && $_POST['gender'] && $_POST['age'] && $_POST['contact'] && $_POST['address']))
+    if(empty($_POST['name'] && $_POST['email'] && $_POST['password'] && $_POST['gender'] && $_POST['age'] && $_POST['contact'] && $_POST['address']))
+    {
+       echo $message = "Fill All Data Field";
+    }
+    else
     {
         if(isset($_FILES) && !empty($_FILES['picture']['name']) && !empty($_FILES['video']['name']))
         {
@@ -20,21 +25,39 @@ if(isset($_POST['createStudent'])){
             $p_ext = strtolower(pathinfo($_FILES['picture']['name'], PATHINFO_EXTENSION));
             $v_ext = strtolower(pathinfo($_FILES['video']['name'], PATHINFO_EXTENSION));
 
+            $valid_image = ['jpg', 'png', 'jpeg', 'gif'];
+            $valid_video = ['mp4', 'ogg', 'avi', 'wmv', 'flv', 'mov', 'webm'];
 //check if not valid images
-            if($p_ext!="jpg" && $p_ext!="png" && $p_ext!="jpeg" && $p_ext!="gif")
+            // if($p_ext!="jpg" && $p_ext!="png" && $p_ext!="jpeg" && $p_ext!="gif")
+            // {
+            //     $p_ext = "";
+            // }
+            // else
+            // {
+            //     echo "valid Data";
+            // }
+
+            if(in_array($p_ext, $valid_image))
             {
-                $p_ext = "";
+               echo "valid Data" . "<br />"; 
             }
-            else
+
+            if(in_array($v_ext, $valid_video))
             {
-                echo "valid Data";
+               echo "your Inserted Data type is " . $v_ext . "<br />";
+               echo "All Valid Data type is";
+               
+               foreach($valid_video as $value)
+                { 
+                    echo $value . "<br />";
+                }
             }
 
 //check if not valid videos
-            if($v_ext!="mp4" && $v_ext!="ogg" && $v_ext!="avi" && $v_ext!="wmv" && $v_ext!="flv" && $v_ext!="mov" && $v_ext!="webm")
-            {
-                $v_ext = "";
-            }
+            // if($v_ext!="mp4" && $v_ext!="ogg" && $v_ext!="avi" && $v_ext!="wmv" && $v_ext!="flv" && $v_ext!="mov" && $v_ext!="webm")
+            // {
+            //     $v_ext = "";
+            // }
         }
         else
         {
@@ -76,10 +99,6 @@ if(isset($_POST['createStudent'])){
         {
             echo $message = "Server too busy"; 
         }    
-    }
-    else
-    {
-        echo $message = "Fill All Data Field";
     }
 }
 
